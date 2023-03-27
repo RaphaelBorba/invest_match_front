@@ -34,7 +34,13 @@ export const LoginCss = styled.main<any>`
             }
         }
 
-        form{
+
+        
+    }
+
+`;
+export const AuthFormCss = styled.form<any>`
+
             transition: 1s;
             position: absolute;
             margin-left: ${props => props.moveImage ? '50%' : '0%'};
@@ -107,8 +113,5 @@ export const LoginCss = styled.main<any>`
                 }
             }
             
-        }
-        
-    }
 
-`
+`;

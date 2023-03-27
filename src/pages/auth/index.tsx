@@ -1,14 +1,13 @@
-import Link from 'next/link'
-import styled from 'styled-components'
-import { palleteDark, palleteLigth } from '@/styles/pallete'
 import loginImg from '@/assets/login.png'
 import Image from 'next/image'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Head from 'next/head'
-import { LoginCss } from './style'
+import { AuthFormCss, LoginCss } from './style'
+import { useRouter } from 'next/router'
 
 export default function Login() {
 
+    const router = useRouter()
     const [auth, setAuth] = useState(false) //false é login, true é cadastro
     const [moveImage, setMoveImage] = useState(false)
     const [form, setForm] = useState({
@@ -30,6 +29,13 @@ export default function Login() {
     function handleSubmit(e: FormEvent) {
         e.preventDefault()
         console.log(form)
+        
+        if(auth){
+
+        }else{
+
+
+        }
 
     }
 
@@ -58,7 +64,7 @@ export default function Login() {
         <LoginCss moveImage={moveImage}>
             <section >
 
-                <form onSubmit={handleSubmit}>
+                <AuthFormCss moveImage={moveImage} onSubmit={handleSubmit}>
                     <h1>InvestMacth</h1>
                     {
                         !auth ?
@@ -83,7 +89,7 @@ export default function Login() {
 
                     <button type='submit' >{auth ? 'Criar Conta' : 'Logar'}</button>
                     <h4 onClick={changeAuth}>{auth ? 'Já tenho conta!' : 'Criar Conta!'}</h4>
-                </form>
+                </AuthFormCss>
                 <article ><Image src={loginImg} alt='Login Image'></Image></article>
             </section>
         </LoginCss>
