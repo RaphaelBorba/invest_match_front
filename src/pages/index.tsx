@@ -1,6 +1,12 @@
+import { useUser } from '@/context/context'
 import Head from 'next/head'
 
 export default function Home() {
+
+  const {user, setUser} = useUser()
+
+  console.log(user)
+
   return (
     <>
       <Head>

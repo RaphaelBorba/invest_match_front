@@ -5,11 +5,14 @@ import Head from 'next/head'
 import { AuthFormCss, LoginCss } from './style'
 import { useRouter } from 'next/router'
 import { postSignIn, postSignUp } from '@/utils/api'
-import { ToastContainer ,toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useUser } from '@/context/context'
 
 export default function Login() {
-
+    
+    //Variables and states
+    const { setUser } = useUser()
     const router = useRouter()
     const [auth, setAuth] = useState(false) //false é login, true é cadastro
     const [moveImage, setMoveImage] = useState(false)
@@ -33,21 +36,28 @@ export default function Login() {
         e.preventDefault()
         console.log(form)
 
+        // SIGN IN
         if (!auth) {
-            // LOGIN
 
-            postSignIn({email: form.email, password:form.password})
-                .then((e)=>{
+            postSignIn({ email: form.email, password: form.password })
+                .then((e) => {
                     console.log(e.data)
+                    setUser({
+                        token: e.data.token,
+                        userId: '1'
+                    })
+                    router.push({ pathname: '/' }, undefined, { shallow: true })
+
                 })
-                .catch((e)=>toast.error(e.response.data.message))
-            
+                .catch((e) => toast.error(e.response.data.message))
+
+        // SIGN UP
         } else {
-            // CADASTRO
             postSignUp(form)
                 .then((e) => {
                     toast.success('Conta Criada!')
                     changeAuth()
+
                 })
                 .catch((e) => toast.error(e.response.data.message))
         }
@@ -55,7 +65,7 @@ export default function Login() {
     }
 
 
-
+    // Function to change image and forms from place
     function changeAuth() {
 
         setMoveImage(!moveImage)
@@ -107,7 +117,7 @@ export default function Login() {
                     </AuthFormCss>
                     <article ><Image src={loginImg} alt='Login Image'></Image></article>
                 </section>
-                <ToastContainer/>
+                <ToastContainer />
             </LoginCss>
         </>
     )
