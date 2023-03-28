@@ -53,16 +53,7 @@ export const AuthFormCss = styled.form<any>`
             gap: 15px;
 
             h1{
-                font-size: 50px;
-                font-weight: 700;
-                color: #42BFDD;
-                background-image: -webkit-linear-gradient(135deg, #42BFDD 39%,#011638 56%);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                position: absolute;
-                top: 40px;
-
+                margin-bottom: 20px;
             }
             h2{
                 font-size: 25px;

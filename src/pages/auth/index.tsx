@@ -8,6 +8,7 @@ import { postSignIn, postSignUp } from '@/utils/api'
 import { toast } from 'react-toastify'
 import { useUser } from '@/context/context'
 import * as jwt from 'jsonwebtoken'
+import Logo from '@/components/header/Logo'
 
 export default function Login() {
     
@@ -34,11 +35,9 @@ export default function Login() {
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault()
-        console.log(form)
 
         // SIGN IN
         if (!auth) {
-
             postSignIn({ email: form.email, password: form.password })
                 .then((e) => {
                     const decodeToken: any = jwt.decode(e.data.token)
@@ -47,6 +46,7 @@ export default function Login() {
                         userId: decodeToken.userId,
                         type: decodeToken.type
                     })
+                    localStorage.setItem('token', e.data.token)
 
                     router.push({ pathname: '/' }, undefined, { shallow: true })
 
@@ -59,13 +59,10 @@ export default function Login() {
                 .then((e) => {
                     toast.success('Conta Criada!')
                     changeAuth()
-
                 })
                 .catch((e) => toast.error(e.response.data.message))
         }
-
     }
-
 
     // Function to change image and forms from place
     function changeAuth() {
@@ -79,10 +76,7 @@ export default function Login() {
             password: '',
             image_url: ''
         })
-
-
     }
-
     return (
         <>
             <Head>
@@ -92,7 +86,7 @@ export default function Login() {
                 <section >
 
                     <AuthFormCss moveImage={moveImage} onSubmit={handleSubmit}>
-                        <h1>InvestMacth</h1>
+                        <Logo/>
                         {
                             !auth ?
                                 <>
@@ -123,4 +117,3 @@ export default function Login() {
         </>
     )
 }
-

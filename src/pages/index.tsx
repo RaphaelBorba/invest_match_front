@@ -1,3 +1,4 @@
+import Header from '@/components/header/Header'
 import { useUser } from '@/context/context'
 import Head from 'next/head'
 
@@ -15,6 +16,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header/>
       <main >
         <h1>Home</h1>
       </main>
