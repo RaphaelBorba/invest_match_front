@@ -5,9 +5,9 @@ import Head from 'next/head'
 import { AuthFormCss, LoginCss } from './style'
 import { useRouter } from 'next/router'
 import { postSignIn, postSignUp } from '@/utils/api'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify'
 import { useUser } from '@/context/context'
+import * as jwt from 'jsonwebtoken'
 
 export default function Login() {
     
@@ -41,11 +41,13 @@ export default function Login() {
 
             postSignIn({ email: form.email, password: form.password })
                 .then((e) => {
-                    console.log(e.data)
+                    const decodeToken: any = jwt.decode(e.data.token)
                     setUser({
                         token: e.data.token,
-                        userId: '1'
+                        userId: decodeToken.userId,
+                        type: decodeToken.type
                     })
+
                     router.push({ pathname: '/' }, undefined, { shallow: true })
 
                 })
@@ -117,7 +119,6 @@ export default function Login() {
                     </AuthFormCss>
                     <article ><Image src={loginImg} alt='Login Image'></Image></article>
                 </section>
-                <ToastContainer />
             </LoginCss>
         </>
     )

@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from 'react';
 
 type User = {
-  userId: string;
+  userId: number;
+  type: string;
   token: string;
 };
 
