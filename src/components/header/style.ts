@@ -13,13 +13,42 @@ export const HeaderCss = styled.header`
     justify-content: space-between;
     align-items: center;
     padding-inline: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5;
 `;
 
 export const SearchBarCss = styled.nav`
 
     width: 30%;
     height: 50px;
-    background-color: white;
+    display: flex;
+    
+    input{
+        width: 90%;
+        height: 100%;
+        font-size: 20px;
+        padding-left: 10px;
+        font-weight: 300;
+        border: none;
+        border-radius: 20px 0 0 20px;
+        outline: 0;
+    }
+    button{
+        width: 10%;
+        height: 100%;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        border-left: 1px solid #42BFDD;
+        background-color: white;
+        font-size: 23px;
+        cursor: pointer;
+        transition: .5s;
+    }
+    button:hover{
+        background-color: #42BFDD;
+    }
     
     
 `;
@@ -35,9 +64,71 @@ export const LogoCss = styled.h1`
     -webkit-text-fill-color: transparent;
 `;
 
-export const LogCss = styled.div`
+export const LogCss = styled.div<any>`
 
     width: 100px;
     height: 50px;
-    border: 1px solid red;
+    font-size: 35px;
+    transition: .5s;
+    position: relative;
+    
+    nav{
+        position: absolute;
+        right: 0;
+        top: -30px;
+        display: flex;
+        justify-content: center;
+        width: 200px;
+        height: 100px;
+        align-items: center;
+        z-index: 2;
+        cursor: pointer;
+        background-color: ${palleteDark.silver};
+    }
+    ul{
+        position: absolute;
+        right: 0;
+        background-color: ${palleteDark.silver};
+        z-index: 1;
+        top: ${props => props.click? '75px': '-50px'};
+        width: 200px;
+        transition: .5s;
+        border-radius: 0 0 10px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        li{
+            font-size: 25px;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+        }
+        li:hover{
+            background-color: #42BFDD;
+        }
+        li:last-child{
+            border-radius: 0 0 10px 10px;
+        }
+        
+    }
+
+`;
+
+export const Blank = styled.section<any>`
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: ${props => props.click? 'inital': 'none'};
+    background-color: red;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background-color: black;
+    opacity: 0.2;
 `;

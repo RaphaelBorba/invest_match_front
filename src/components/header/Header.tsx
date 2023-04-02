@@ -1,17 +1,40 @@
+import { useUser } from "@/context/context";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import LoginOrOut from "./LoginOrOut";
-import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import { HeaderCss } from "./style";
+import { Blank, HeaderCss, LogoCss } from "./style";
+import * as jwt from 'jsonwebtoken'
 
+export default function Header() {
 
-export default function Header(){
+    const {user, setUser} = useUser()
 
-    return(
+    useEffect(()=>{
 
-        <HeaderCss>
-            <Logo/>
-            <SearchBar/>
-            <LoginOrOut/>
-        </HeaderCss>
+        const token = localStorage.getItem('token')
+        
+        if(!user && token){
+            const decodeToken: any = jwt.decode(token)
+            setUser({
+                token: token,
+                userId: decodeToken.userId,
+                type: decodeToken.type
+            })
+        } 
+
+    },[])
+
+    const [click, setClick] = useState(false)
+
+    return (
+        <>
+            <HeaderCss>
+                <Link href={'/'}><LogoCss onClick={() => setClick(false)}>InvestMatch</LogoCss></Link>
+                <SearchBar />
+                <LoginOrOut click={click} setClick={setClick} />
+            </HeaderCss>
+            {click? <Blank click={click} onClick={() => setClick(!click)} /> : ''}
+        </>
     );
 }

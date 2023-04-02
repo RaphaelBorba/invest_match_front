@@ -8,7 +8,7 @@ import { postSignIn, postSignUp } from '@/utils/api'
 import { toast } from 'react-toastify'
 import { useUser } from '@/context/context'
 import * as jwt from 'jsonwebtoken'
-import Logo from '@/components/header/Logo'
+import { LogoCss } from '@/components/header/style'
 
 export default function Login() {
     
@@ -86,7 +86,7 @@ export default function Login() {
                 <section >
 
                     <AuthFormCss moveImage={moveImage} onSubmit={handleSubmit}>
-                        <Logo/>
+                        <LogoCss>InvestMacth</LogoCss>
                         {
                             !auth ?
                                 <>
