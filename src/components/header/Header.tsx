@@ -8,22 +8,32 @@ import * as jwt from 'jsonwebtoken'
 
 export default function Header() {
 
-    const {user, setUser} = useUser()
+    const { user, setUser } = useUser()
 
-    useEffect(()=>{
+    useEffect(() => {
 
         const token = localStorage.getItem('token')
-        
-        if(!user && token){
-            const decodeToken: any = jwt.decode(token)
-            setUser({
-                token: token,
-                userId: decodeToken.userId,
-                type: decodeToken.type
-            })
-        } 
 
-    },[])
+        if (!user && token) {
+
+            
+            try {
+                const { userId, type }:any = jwt.verify(token, 'raphaelBorba') 
+
+                setUser({
+                    token: token,
+                    userId: userId,
+                    type: type
+                })
+
+            } catch (error) {
+
+                localStorage.clear()
+            }
+            
+        }
+
+    }, [])
 
     const [click, setClick] = useState(false)
 
@@ -34,7 +44,7 @@ export default function Header() {
                 <SearchBar />
                 <LoginOrOut click={click} setClick={setClick} />
             </HeaderCss>
-            {click? <Blank click={click} onClick={() => setClick(!click)} /> : ''}
+            {click ? <Blank click={click} onClick={() => setClick(!click)} /> : ''}
         </>
     );
 }

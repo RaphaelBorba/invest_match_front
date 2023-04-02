@@ -24,9 +24,14 @@ export const SearchBarCss = styled.nav`
     width: 30%;
     height: 50px;
     display: flex;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     
     input{
-        width: 90%;
+        width: 85%;
         height: 100%;
         font-size: 20px;
         padding-left: 10px;
@@ -36,7 +41,7 @@ export const SearchBarCss = styled.nav`
         outline: 0;
     }
     button{
-        width: 10%;
+        width: 15%;
         height: 100%;
         border: none;
         border-radius: 0 20px 20px 0;
@@ -50,7 +55,9 @@ export const SearchBarCss = styled.nav`
         background-color: #42BFDD;
     }
     
-    
+    @media  (max-width: 950px){
+        display: none;
+    }
 `;
 
 export const LogoCss = styled.h1`
