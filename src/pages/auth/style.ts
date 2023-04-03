@@ -79,20 +79,7 @@ export const AuthFormCss = styled.form<any>`
                 border-color: #42BFDD
             }
             button{
-                margin-top: 20px;
-                width: 200px;
-                height: 50px;
-                border-radius: 20px;
-                background-color: white;
-                border: #42BFDD 3px solid;
-                font-size: 20px;
-                transition: .5s;
-                color: #42BFDD;
-            }
-            button:hover{
-                cursor: pointer;
-                background-color: #42BFDD;
-                color: white;
+                margin-top: 10px;
             }
             div{
                 display: flex;
@@ -104,5 +91,22 @@ export const AuthFormCss = styled.form<any>`
                 }
             }
             
+`;
 
+export const ButtonWhiteBlueCss = styled.button`
+
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: white;
+    border: #42BFDD 3px solid;
+    font-size: 20px;
+    transition: .5s;
+    color: #42BFDD;
+    
+    &&:hover{
+        cursor: pointer;
+        background-color: #42BFDD;
+        color: white;
+    }
 `;

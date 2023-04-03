@@ -9,7 +9,7 @@ export default function SearchBar(){
     return(
 
         <SearchBarCss>
-            <input type="text" onChange={(e)=>setSearch(e.target.value)} />
+            <input placeholder="Procure pelo projeto..." type="text" onChange={(e)=>setSearch(e.target.value)} />
             <button><AiOutlineSearch/></button>
         </SearchBarCss>
         

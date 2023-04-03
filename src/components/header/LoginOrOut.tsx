@@ -11,7 +11,7 @@ export default function LoginOrOut({ click, setClick }: any) {
     const { user } = useUser()
     const router = useRouter()
 
-    function logOut(){
+    function logOut() {
 
         localStorage.clear()
         location.reload()
@@ -29,11 +29,11 @@ export default function LoginOrOut({ click, setClick }: any) {
                 {
                     user ?
                         <>
-                            <li><span>Perfil</span> <BsPerson /></li>
-                            <li onClick={logOut}><span>Sair</span><MdOutlineLogout /></li>
+                            <li><span>Perfil</span><BsPerson /></li>
+                            <li onClick={logOut}><span>Sair </span><MdOutlineLogout /></li>
                         </>
                         :
-                        <li onClick={()=> router.push({ pathname: '/auth' }, undefined, { shallow: true })}><span>Login</span><MdOutlineLogout /></li>
+                        <li onClick={() => router.push({ pathname: '/auth' }, undefined, { shallow: true })}><span>Login </span><MdOutlineLogout /></li>
                 }
             </ul>
 

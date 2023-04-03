@@ -34,7 +34,7 @@ export const SearchBarCss = styled.nav`
         width: 85%;
         height: 100%;
         font-size: 20px;
-        padding-left: 10px;
+        padding-left: 15px;
         font-weight: 300;
         border: none;
         border-radius: 20px 0 0 20px;
@@ -47,9 +47,9 @@ export const SearchBarCss = styled.nav`
         border-radius: 0 20px 20px 0;
         border-left: 1px solid #42BFDD;
         background-color: white;
-        font-size: 23px;
+        font-size: 26px;
         cursor: pointer;
-        transition: .5s;
+        transition: .3s;
     }
     button:hover{
         background-color: #42BFDD;
@@ -113,10 +113,18 @@ export const LogCss = styled.div<any>`
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.5s;
+            transition: 0.3s;
+            span{
+                transition: 0.3s;
+                margin-right: 10px;
+            }
         }
         li:hover{
             background-color: #42BFDD;
+            color: white;
+            span{
+                color: white;
+            }
         }
         li:last-child{
             border-radius: 0 0 10px 10px;

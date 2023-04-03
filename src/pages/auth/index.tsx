@@ -2,7 +2,7 @@ import loginImg from '@/public/login.png'
 import Image from 'next/image'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Head from 'next/head'
-import { AuthFormCss, LoginCss } from './style'
+import { AuthFormCss, ButtonWhiteBlueCss, LoginCss } from './style'
 import { useRouter } from 'next/router'
 import { postSignIn, postSignUp } from '@/utils/api'
 import { toast } from 'react-toastify'
@@ -108,7 +108,7 @@ export default function Login() {
                                 </>
                         }
 
-                        <button type='submit' >{auth ? 'Criar Conta' : 'Logar'}</button>
+                        <ButtonWhiteBlueCss type='submit' >{auth ? 'Criar Conta' : 'Logar'}</ButtonWhiteBlueCss>
                         <h4 onClick={changeAuth}>{auth ? 'Já tenho conta!' : 'Criar Conta!'}</h4>
                     </AuthFormCss>
                     <article ><Image src={loginImg} alt='Login Image'></Image></article>
